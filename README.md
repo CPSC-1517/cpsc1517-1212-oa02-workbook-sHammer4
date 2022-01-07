@@ -1,5 +1,5 @@
 # Basic Starter Kit
 
-## Owner your name
+## Owner Susanto Hammer
 
-alter this statement to indicate the usage of this repository
+alter this statement to indicate (ok) the usage of this repository
