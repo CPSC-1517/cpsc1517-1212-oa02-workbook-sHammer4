@@ -8,10 +8,30 @@ namespace TrainSystem
 {
     internal class Train
     {
-        //public Engine Engine { get; set; }
-        public int GrossWeight { get; }
+        #region Properties
+        public Engine Engine { get; private set; }
+        public int GrossWeight
+        {
+            get
+            {
+
+            }
+        }
         public int MaxGrossWeight { get; }
-        //public List<RailCar> RailCars { get; set; }
+        public List<RailCar> RailCars { get; private set; }
         public int TotalCars { get; }
+        #endregion
+
+        #region Methods
+        public void Add(RailCar car)
+        {
+            RailCars.Add(car);
+        }
+
+        public Train(Engine givenEngine)
+        {
+            Engine = givenEngine;
+        }
+        #endregion
     }
 }

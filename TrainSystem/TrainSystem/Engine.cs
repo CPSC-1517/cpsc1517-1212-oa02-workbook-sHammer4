@@ -8,11 +8,14 @@ namespace TrainSystem
 {
     internal class Engine
     {
+        #region Private Fields
         private int _HP;
         private string _Model;
         private string _SerialNumber;
         private int _Weight;
+        #endregion
 
+        #region Readonly Properties
         public int HP 
         { 
             get { return _HP; }
@@ -68,7 +71,9 @@ namespace TrainSystem
                 _Weight = value;
             }
         }
+        #endregion
 
+        #region Methods
         public Engine(string model, string serialNumber, int weight, int hp)
         {
             _Model = model;
@@ -81,5 +86,6 @@ namespace TrainSystem
         {
             return String.Format($"HP: {_HP}, Model: {_Model}, Serial Number: {_SerialNumber}, Weight: {_Weight}");
         }
+        #endregion
     }
 }
