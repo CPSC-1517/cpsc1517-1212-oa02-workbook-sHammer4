@@ -84,7 +84,7 @@ namespace TrainSystem
 
         public override string ToString()
         {
-            return String.Format($"HP: {_HP}, Model: {_Model}, Serial Number: {_SerialNumber}, Weight: {_Weight}");
+            return String.Format($"{_HP},{_Model},{_SerialNumber},{_Weight}");
         }
         #endregion
     }

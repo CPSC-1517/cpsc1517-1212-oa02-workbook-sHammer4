@@ -14,18 +14,42 @@ namespace TrainSystem
         {
             get
             {
-
+                int sumOfWeight = 0;
+                foreach (RailCar currentRailCar in RailCars)
+                {
+                    sumOfWeight += currentRailCar.GrossWeight;
+                }
+                return sumOfWeight + Engine.Weight;
             }
         }
-        public int MaxGrossWeight { get; }
+        public int MaxGrossWeight
+        {
+            get
+            {
+                return Engine.HP * 2000;
+            }
+        }
         public List<RailCar> RailCars { get; private set; }
-        public int TotalCars { get; }
+        public int TotalCars
+        {
+            get
+            {
+                return RailCars.Count();
+            }
+        }
         #endregion
 
         #region Methods
         public void Add(RailCar car)
         {
-            RailCars.Add(car);
+            if (car.GrossWeight + GrossWeight >= MaxGrossWeight)
+            {
+                throw new ArgumentException("RailCar GrossWeights excees the MaxGrossWeight of the Train.");
+            }
+            else
+            {
+                RailCars.Add(car);
+            }
         }
 
         public Train(Engine givenEngine)

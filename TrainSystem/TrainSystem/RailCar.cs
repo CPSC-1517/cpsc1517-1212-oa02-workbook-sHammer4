@@ -22,7 +22,7 @@ namespace TrainSystem
             get { return _Capacity; }
             private set
             {
-                if (_LoadLimit < value)
+                if (_LoadLimit <= value)
                 {
                     throw new ArgumentException("RailCar Capacity must be a lower value than the LoadLimit");
                 }
@@ -103,7 +103,7 @@ namespace TrainSystem
 
         public override string ToString()
         {
-            return $"Capacity: {Capacity}, GrossWeight: {GrossWeight}, InService: {InService}, IsFull: {IsFull}, LightWeight: {LightWeight}, LoadLimit: {LoadLimit}, NetWeight: {NetWeight}, SerialNumber {SerialNumber}, Type: {Type}";
+            return $"{Capacity},{GrossWeight},{InService},{IsFull},{LightWeight},{LoadLimit},{NetWeight},{SerialNumber},{Type}";
         }
         #endregion
     }
