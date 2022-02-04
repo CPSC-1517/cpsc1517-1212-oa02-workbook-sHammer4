@@ -269,10 +269,14 @@ WriteLine();
 #region Train Test
 try
 {
+    //Correctly displays error message if RailCar has no gross weight
     Engine engine2 = new("CP 8002", "48807", 147700, 4400);
     RailCar railCar1 = new("18172", 38800, 110000, 130200, RailCarType.BOX_CAR, true);
+    railCar1.RecordScaleWeight(150000);
     RailCar railCar2 = new("18176", 38800, 110000, 130200, RailCarType.COVERED_HOPPER, true);
+    railCar2.RecordScaleWeight(100000);
     RailCar railCar3 = new("69420", 38800, 110000, 130200, RailCarType.COAL_CAR, true);
+    railCar3.RecordScaleWeight(125000);
 
     Train train1 = new(engine2);
 

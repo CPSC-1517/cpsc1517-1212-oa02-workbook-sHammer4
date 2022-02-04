@@ -17,7 +17,14 @@ namespace TrainSystem
                 int sumOfWeight = 0;
                 foreach (RailCar currentRailCar in RailCars)
                 {
-                    sumOfWeight += currentRailCar.GrossWeight;
+                    if (currentRailCar.GrossWeight == 0)
+                    {
+                        throw new ArgumentNullException("Train Railcar must have a gross weight assigned.");
+                    }
+                    else
+                    {
+                        sumOfWeight += currentRailCar.GrossWeight;
+                    }
                 }
                 return sumOfWeight + Engine.Weight;
             }
@@ -42,7 +49,7 @@ namespace TrainSystem
         #region Methods
         public void Add(RailCar car)
         {
-            if(car == null)
+            if (car == null)
             {
                 throw new ArgumentNullException("Train add RailCar is required");
             }
