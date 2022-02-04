@@ -27,8 +27,9 @@ namespace TrainSystem
                 }
                 if(value % 100 != 0)
                 {
-                    throw new ArgumentException("Engine HP must be measure in 100 HP increments");
+                    throw new ArgumentException("Engine HP must be measured in 100 HP increments");
                 }
+                _HP = value;
             }
         }
         public string Model
@@ -36,7 +37,7 @@ namespace TrainSystem
             get { return _Model; }
             private set // Allows internal access within current class only. Externet access is not allowed
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentNullException("Engine Model value is required");
                 }
@@ -48,7 +49,7 @@ namespace TrainSystem
             get { return _SerialNumber; }
             private set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentNullException("Engine SerialNumber value is required");
                 }
@@ -60,7 +61,7 @@ namespace TrainSystem
             get { return _Weight; }
             private set
             {
-                if(value >= 0)
+                if(value <= 0)
                 {
                     throw new ArgumentException("Weight must be a positive and non-zero whole number.");
                 }
@@ -76,10 +77,10 @@ namespace TrainSystem
         #region Methods
         public Engine(string model, string serialNumber, int weight, int hp)
         {
-            _Model = model;
-            _SerialNumber = serialNumber;
-            _Weight = weight;
-            _HP = hp;
+            Model = model;
+            SerialNumber = serialNumber;
+            Weight = weight;
+            HP = hp;
         }
 
         public override string ToString()

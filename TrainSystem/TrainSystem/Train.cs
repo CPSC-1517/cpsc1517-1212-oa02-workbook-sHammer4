@@ -29,7 +29,7 @@ namespace TrainSystem
                 return Engine.HP * 2000;
             }
         }
-        public List<RailCar> RailCars { get; private set; }
+        public List<RailCar> RailCars { get; private set; } = new List<RailCar>();
         public int TotalCars
         {
             get
@@ -42,6 +42,10 @@ namespace TrainSystem
         #region Methods
         public void Add(RailCar car)
         {
+            if(car == null)
+            {
+                throw new ArgumentNullException("Train add RailCar is required");
+            }
             if (car.GrossWeight + GrossWeight >= MaxGrossWeight)
             {
                 throw new ArgumentException("RailCar GrossWeights excees the MaxGrossWeight of the Train.");

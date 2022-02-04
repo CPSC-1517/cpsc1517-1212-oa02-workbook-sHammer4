@@ -22,9 +22,13 @@ namespace TrainSystem
             get { return _Capacity; }
             private set
             {
-                if (_LoadLimit <= value)
+                if (value >= _LoadLimit)
                 {
                     throw new ArgumentException("RailCar Capacity must be a lower value than the LoadLimit");
+                }
+                if (value % 100 != 0)
+                {
+                    throw new ArgumentException("RailCar Capacity must be measured in 100lbs increments");
                 }
                 _Capacity = value;
             }
@@ -35,35 +39,53 @@ namespace TrainSystem
         {
             get
             {
-                if(NetWeight < 0.9 * Capacity)
+                if (NetWeight < 0.9 * Capacity)
                 {
-                    return true;
+                    return false;
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }
         }
         public int LightWeight
         {
             get { return _LightWeight; }
-            private set { _LightWeight = value; }
+            private set
+            {
+                if (value % 100 != 0)
+                {
+                    throw new ArgumentException("RailCar LightWeight must be measured in 100lbs increments");
+                }
+                _LightWeight = value;
+            }
         }
         public int LoadLimit
         {
             get { return _LoadLimit; }
-            private set { _LoadLimit = value; }
+            private set
+            {
+                if (value % 100 != 0)
+                {
+                    throw new ArgumentException("RailCar LoadLimit must be measured in 100lbs increments");
+                }
+                _LoadLimit = value;
+            }
         }
         public int NetWeight
         {
-            get { return _LoadLimit + _Capacity; }
+            get { return GrossWeight - LightWeight; }
         }
-        public string SerialNumber 
-        { 
-            get { return _SerialNumber;  }
+        public string SerialNumber
+        {
+            get { return _SerialNumber; }
             private set
             {
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException("RailCar SerialNumber value is required");
+                }
                 _SerialNumber = value.Trim();
             }
         }
@@ -79,8 +101,8 @@ namespace TrainSystem
         {
             SerialNumber = serialNumber;
             LightWeight = lightWeight;
-            Capacity = capacity;
             LoadLimit = loadLimit;
+            Capacity = capacity;
             Type = type;
             InService = inService;
         }
@@ -91,9 +113,13 @@ namespace TrainSystem
             {
                 throw new ArgumentException("Scale Error - RailCar GrossWeight must be a greater value than the LightWeight");
             }
-            else if(grossWeight > _LightWeight + LoadLimit)
+            else if (grossWeight > _LightWeight + LoadLimit)
             {
                 throw new ArgumentException("Unsafe Load - RailCar GrossWeight must be less than the gross Load Limit (LightWeight + LoadLimit)");
+            }
+            else if (grossWeight % 100 != 0)
+            {
+                throw new ArgumentException("RailCar GrossWeight must be measured in 100lbs increments");
             }
             else
             {
