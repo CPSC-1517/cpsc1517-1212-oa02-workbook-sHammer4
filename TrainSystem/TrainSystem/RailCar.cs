@@ -75,7 +75,18 @@ namespace TrainSystem
         }
         public int NetWeight
         {
-            get { return GrossWeight - LightWeight; }
+            //GrossWeight - LightWeight;
+            get
+            {
+                if(GrossWeight == 0)
+                {
+                    throw new ArgumentNullException("RailCar NetWeight cannot be calculated without a GrossWeight");
+                }
+                else
+                {
+                    return GrossWeight - LightWeight;
+                }
+            }
         }
         public string SerialNumber
         {

@@ -119,6 +119,7 @@ WriteLine();
 try
 {
     RailCar railCar1 = new("18172", 38800, 110000, 130200, RailCarType.BOX_CAR, true);
+    railCar1.RecordScaleWeight(100000);
     WriteLine(railCar1);
 }
 catch (Exception ex)
@@ -138,6 +139,7 @@ catch (ArgumentException ex)
 }
 
 //Whitespace
+//No Gross Weight provided
 try
 {
     RailCar railCar2 = new("   18172     ", 38800, 110000, 130200, RailCarType.BOX_CAR, true);
@@ -152,6 +154,7 @@ catch (Exception ex)
 try
 {
     RailCar railCar2 = new("18172", 38801, 110000, 130200, RailCarType.BOX_CAR, true);
+    railCar2.RecordScaleWeight(100000);
     WriteLine(railCar2);
 }
 catch (Exception ex)
@@ -163,6 +166,7 @@ catch (Exception ex)
 try
 {
     RailCar railCar2 = new("18172", 38800, 110002, 130200, RailCarType.BOX_CAR, true);
+    railCar2.RecordScaleWeight(100000);
     WriteLine(railCar2);
 }
 catch (Exception ex)
@@ -174,6 +178,7 @@ catch (Exception ex)
 try
 {
     RailCar railCar2 = new("18172", 38800, 110000, 130203, RailCarType.BOX_CAR, true);
+    railCar2.RecordScaleWeight(100000);
     WriteLine(railCar2);
 }
 catch (Exception ex)
